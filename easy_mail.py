@@ -1,4 +1,7 @@
 # -*- coding:utf-8 -*-
+"""cut corners script around email."""
+# :copyright: (c) 2012 makoto tsuyuki.
+# :license: BSD
 
 import smtplib
 from email.MIMEText import MIMEText
@@ -22,7 +25,6 @@ def send_mail(sender, sender_label, receivers, subject, body, charset, attachmen
         msg.attach(file_part)
         msg.attach(body_part)
     else:
-        # 'text/plain; charset="encoding"'というMIME文書を作ります
         msg = MIMEText(body.encode(charset), 'plain', charset)
 
     if sender_label:
@@ -40,13 +42,9 @@ def send_mail(sender, sender_label, receivers, subject, body, charset, attachmen
 if __name__ == '__main__':
     from StringIO import StringIO
     csvfile = StringIO('''123,456\n789,101\n111,112''')
-    #受信者(リストで複数指定)
     receivers = ['mtsuyuki@gmail.com',]
-    #メーラーが表示する送信者
     sender_name = u"露木 誠"
-    #件名
     subject = u"メール送信のテスト"
-    #本文
     body = u"""日本語の本文です。
     なんか書いたりする"""
     send_mail('tsuyuki@tsuyukimakoto.com', None, receivers, subject, body, 'ISO-2022-JP')#, csvfile, '20121024.csv')
