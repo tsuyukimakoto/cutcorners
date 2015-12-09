@@ -11,7 +11,7 @@ from email.Header import Header
 from email.Utils import formatdate
 from email import Encoders
 
-def add_attachement(msg, attach, fname):
+def add_attachement(msg, attachment, filename):
     file_part = MIMEBase('application', "octet-stream")
     file_part.set_payload( attachment.read() )
     Encoders.encode_base64(file_part)
